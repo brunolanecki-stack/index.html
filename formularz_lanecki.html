@@ -3,137 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Bruno Łanecki, klasa 2F">
-  <meta name="description" content="Formularz zgłoszenia problemu ze sprzętem komputerowym">
-  <title>Formularz Łanecki - zgłoszenie serwisowe</title>
+  <title>Formularz zaproponowany przez nauczyciela</title>
   <style>
-    :root { color-scheme: dark; }
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 28px 16px; background: #101b2d; color: #edf4ff; font-family: Arial, sans-serif; }
-    main { max-width: 900px; margin: auto; }
-    header { padding: 26px; border-left: 7px solid #42d6c5; background: #1b2b43; border-radius: 12px; }
-    h1 { margin: 0 0 8px; color: #71e5d7; }
-    .subtitle { margin: 0; color: #c1d2e8; }
-    .info { margin: 18px 0; padding: 12px 16px; background: #233955; border-radius: 8px; }
-    form { display: grid; gap: 17px; }
-    fieldset { min-width: 0; padding: 18px 20px; border: 1px solid #54708e; border-radius: 10px; background: #192940; }
-    legend { padding: 0 9px; color: #71e5d7; font-weight: bold; }
-    label { display: inline-block; margin: 7px 12px 7px 0; }
-    .vertical label { display: block; margin: 9px 0; }
-    input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select, textarea {
-      width: 100%; max-width: 560px; display: block; margin-top: 6px; padding: 10px;
-      border: 1px solid #7893b1; border-radius: 6px; background: #f4f8ff; color: #142238; font: inherit;
+    body { margin: 0; background: #87cefa; font-family: "Times New Roman", Times, serif; color: black; }
+    .formularz { position: relative; min-height: 547px; max-width: 1200px; margin: auto; border: 1px solid #333; }
+    h1 { position: absolute; top: 1px; left: 31%; right: 1%; margin: 0; text-align: center; font-size: 25px; }
+    label, p { font-size: 13px; }
+    input, select, textarea, button { font-family: inherit; }
+    .dane { position: absolute; top: 97px; left: 1.1%; width: 30%; }
+    .wiersz { display: flex; align-items: center; margin-bottom: 13px; }
+    .wiersz label { width: 132px; font-weight: bold; flex-shrink: 0; }
+    .wiersz input { width: 123px; height: 19px; }
+    .programowanie { position: absolute; top: 248px; left: 1.1%; }
+    .programowanie p { margin: 10px 0; }
+    .programowanie label { display: block; margin: 10px 0; }
+    .opinia { position: absolute; top: 375px; left: 1.1%; width: 32%; }
+    .opinia label { display: block; font-weight: bold; }
+    .opinia textarea { width: 100%; height: 67px; resize: vertical; }
+    .transport { position: absolute; left: 42%; top: 116px; width: 27%; text-align: center; }
+    .transport h2 { font-size: 18px; color: red; margin: 0 0 16px; }
+    .transport select { width: 96px; }
+    .dodatkowe { position: absolute; top: 337px; left: 43%; }
+    .pole { display: flex; align-items: center; height: 18px; gap: 25px; }
+    .pole label { width: 54px; }
+    .pole input[type="time"] { width: 64px; height: 19px; }
+    .pole input[type="date"] { width: 106px; height: 19px; }
+    .pole input[type="color"] { width: 50px; height: 24px; padding: 2px; }
+    .ciasto { position: absolute; top: 50px; left: 68%; width: 30%; }
+    .ciasto p { margin: 0 0 12px; }
+    .ciasto label { display: block; margin: 12px 0; }
+    .ciasto .inne-opis { margin-top: 28px; max-width: 290px; }
+    .ciasto input[type="text"] { width: 138px; height: 19px; }
+    .suwaki { position: absolute; top: 347px; left: 68%; width: 29%; }
+    .suwaki label { display: flex; align-items: center; justify-content: space-between; white-space: nowrap; gap: 6px; font-size: 12px; }
+    .suwaki input { width: 46%; height: 15px; accent-color: #007aff; }
+    .przyciski { position: absolute; bottom: 2px; left: 1.1%; right: 1.1%; height: 62px; }
+    button { height: 62px; border: 1px solid #aaa; border-radius: 4px; background: #e9e9ed; font-size: 12px; cursor: pointer; }
+    .niespodzianka { position: absolute; left: 0; width: 236px; }
+    .reset { position: absolute; left: 42.2%; width: 117px; }
+    .wyslij { position: absolute; left: 67.7%; width: 117px; }
+    #komunikat { position: absolute; bottom: 67px; left: 42%; font-size: 13px; font-weight: bold; }
+    @media (max-width: 700px) {
+      .formularz { min-height: 0; padding: 16px; display: flex; flex-direction: column; gap: 25px; }
+      h1, .dane, .programowanie, .opinia, .transport, .dodatkowe, .ciasto, .suwaki, .przyciski, #komunikat { position: static; width: 100%; margin: 0; transform: none; text-align: left; }
+      h1 { font-size: 24px; text-align: center; }
+      .dane .wiersz { margin-bottom: 10px; }
+      .opinia textarea { max-width: 360px; }
+      .transport h2 { text-align: left; }
+      .ciasto .inne-opis { margin-top: 20px; }
+      .suwaki { max-width: 320px; }
+      .przyciski { flex-wrap: wrap; gap: 10px; }
+      .niespodzianka, .reset, .wyslij { width: auto; min-width: 116px; height: 52px; margin: 0; position: static; transform: none; }
     }
-    textarea { max-width: 100%; resize: vertical; }
-    .field { margin: 12px 0; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-    button, input[type="submit"], input[type="reset"] { padding: 11px 18px; border: 0; border-radius: 7px; background: #42d6c5; color: #102333; font-weight: bold; cursor: pointer; }
-    input[type="reset"] { background: #f1bd68; }
-    .send { background: #71e5d7 !important; }
-    footer { margin-top: 22px; color: #c1d2e8; }
-    a { color: #71e5d7; }
   </style>
-  <script>
-    function sprawdzFormularz() {
-      const formularz = document.getElementById('zgloszenie');
-      if (formularz.reportValidity()) {
-        alert('Podstawowe wymagane pola są uzupełnione. Możesz wysłać zgłoszenie.');
-      }
-    }
-    function przykladowyOpis() {
-      document.getElementById('opis').value = 'Komputer uruchamia się, ale po kilku minutach przestaje reagować. Problem pojawił się dzisiaj.';
-    }
-  </script>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Formularz zgłoszenia awarii sprzętu</h1>
-    <p class="subtitle">Punkt wsparcia IT | Karta zgłoszenia problemu technicznego</p>
-  </header>
-  <p class="info"><strong>Kolor tła:</strong> #101B2D</p>
+  <form class="formularz" id="formularz">
+    <h1>Formularz o................zaproponowany przez nauczyciela</h1>
 
-  <form id="zgloszenie" action="mailto:mkryniew@ids.gda.pl?subject=%C5%81anecki" method="post" enctype="text/plain">
-    <input type="hidden" name="temat" value="Łanecki - zgłoszenie serwisowe">
+    <section class="dane" aria-label="Dane osobowe">
+      <div class="wiersz"><label for="imie">Imię</label><input id="imie" name="imie" type="text"></div>
+      <div class="wiersz"><label for="drugie-imie">Drugie imię</label><input id="drugie-imie" name="drugie_imie" type="text"></div>
+      <div class="wiersz"><label for="nazwisko">Nazwisko</label><input id="nazwisko" name="nazwisko" type="text"></div>
+      <div class="wiersz"><label for="pseudonim">Pseudonim artystyczny</label><input id="pseudonim" name="pseudonim" type="text"></div>
+    </section>
 
-    <fieldset>
-      <legend>1. Dane zgłaszającego</legend>
-      <div class="field"><label for="imie">Imię i nazwisko</label><input type="text" id="imie" name="imie_nazwisko" placeholder="Wpisz imię i nazwisko" required></div>
-      <div class="field"><label for="email">Adres e-mail</label><input type="text" id="email" name="email" value="uczen@example.com" required></div>
-      <div class="field"><label for="telefon">Telefon kontaktowy</label><input type="text" id="telefon" name="telefon" maxlength="15" placeholder="Np. 500600700"></div>
-      <div class="field"><label for="kod">Kod identyfikacyjny zgłoszenia (pole demonstracyjne)</label><input type="password" id="kod" name="kod_testowy" placeholder="Wpisz przykładowy kod"></div>
-      <div class="field"><label for="sala">Numer sali / pracowni</label><input type="text" id="sala" name="sala" placeholder="Bez tekstu początkowego"></div>
-    </fieldset>
+    <section class="programowanie" aria-label="Programowanie">
+      <p>Czy umiesz programować?</p>
+      <label><input type="radio" name="programowanie" value="Tak"> Tak</label>
+      <label><input type="radio" name="programowanie" value="Nie"> Nie</label>
+      <label><input type="radio" name="programowanie" value="Nie wiem"> Nie wiem</label>
+    </section>
 
-    <fieldset>
-      <legend>2. Rodzaj urządzenia</legend>
-      <p>Wybierz urządzenie (układ poziomy, jedna odpowiedź):</p>
-      <label><input type="radio" name="urzadzenie" value="komputer" checked> Komputer</label>
-      <label><input type="radio" name="urzadzenie" value="laptop"> Laptop</label>
-      <label><input type="radio" name="urzadzenie" value="drukarka"> Drukarka</label>
-      <label><input type="radio" name="urzadzenie" value="monitor"> Monitor</label>
-      <div class="field"><label for="model">Model urządzenia</label><select id="model" name="model">
-        <option value="lenovo" selected>Lenovo</option><option value=" dell">Dell</option><option value="hp">HP</option><option value="asus">ASUS</option><option value="inne">Inny / nie wiem</option>
-      </select></div>
-    </fieldset>
+    <section class="opinia">
+      <label for="pogoda">W polu poniżej<br>Wpisz opinię na temat pogody</label>
+      <textarea id="pogoda" name="opinia_o_pogodzie"></textarea>
+    </section>
 
-    <fieldset class="vertical">
-      <legend>3. Kiedy występuje problem?</legend>
-      <label><input type="radio" name="moment" value="start"> Podczas uruchamiania</label>
-      <label><input type="radio" name="moment" value="praca"> W trakcie pracy</label>
-      <label><input type="radio" name="moment" value="zawsze"> Za każdym razem</label>
-      <div class="field"><label for="pilnosc">Priorytet zgłoszenia</label><select id="pilnosc" name="priorytet">
-        <option value="niski">Niski</option><option value="normalny">Normalny</option><option value="wysoki" selected>Wysoki</option><option value="krytyczny">Krytyczny</option>
-      </select></div>
-    </fieldset>
+    <section class="transport">
+      <h2>Podaj środek lokomocji<br>dojazdu do pracy</h2>
+      <select name="transport" aria-label="Środek lokomocji">
+        <option>Autobus</option>
+        <option>Samochód</option>
+        <option>Rower</option>
+        <option>Pociąg</option>
+        <option>Tramwaj</option>
+        <option>Pieszo</option>
+      </select>
+    </section>
 
-    <fieldset>
-      <legend>4. Objawy problemu</legend>
-      <p>Zaznacz pasujące objawy (układ pionowy):</p>
-      <div class="vertical">
-        <label><input type="checkbox" name="objawy" value="wolne_dzialanie"> Urządzenie działa wolno</label>
-        <label><input type="checkbox" name="objawy" value="brak_obrazu"> Brak obrazu</label>
-        <label><input type="checkbox" name="objawy" value="halas"> Nietypowy hałas</label>
-        <label><input type="checkbox" name="objawy" value="brak_sieci"> Brak połączenia z siecią</label>
-      </div>
-    </fieldset>
+    <section class="dodatkowe" aria-label="Data, czas i kolor">
+      <div class="pole"><label for="czas">podaj czas</label><input id="czas" name="czas" type="time"></div>
+      <div class="pole"><label for="data">podaj datę</label><input id="data" name="data" type="date"></div>
+      <div class="pole"><label for="kolor">wybierz kolor</label><input id="kolor" name="kolor" type="color" value="#000000"></div>
+    </section>
 
-    <fieldset>
-      <legend>5. Wykonane czynności</legend>
-      <p>Co zostało już sprawdzone? (układ pionowy)</p>
-      <div class="vertical">
-        <label><input type="checkbox" name="czynnosci" value="restart"> Ponowne uruchomienie</label>
-        <label><input type="checkbox" name="czynnosci" value="kable"> Sprawdzenie przewodów</label>
-        <label><input type="checkbox" name="czynnosci" value="inne"> Próba na innym stanowisku</label>
-      </div>
-      <div class="field"><label for="system">System operacyjny</label><select id="system" name="system">
-        <option value="windows" selected>Windows</option><option value="linux">Linux</option><option value="macos">macOS</option>
-      </select></div>
-    </fieldset>
+    <section class="ciasto">
+      <p>Jaka jest Twoja ulubione ciastko?</p>
+      <label><input type="checkbox" name="ciastko" value="BEZA"> BEZA</label>
+      <label><input type="checkbox" name="ciastko" value="SERNIK"> SERNIK</label>
+      <label><input id="inne" type="checkbox" name="ciastko" value="INNE"> INNE</label>
+      <p class="inne-opis">Jeśli zaznaczyłeś INNE to podaj swoje ciastko<br>wpisz ciastko poniżej. Maks: 100 znaków</p>
+      <input id="inne-ciastko" name="inne_ciastko" type="text" maxlength="100" aria-label="Inne ulubione ciastko">
+    </section>
 
-    <fieldset>
-      <legend>6. Preferowany sposób kontaktu</legend>
-      <label><input type="checkbox" name="kontakt" value="email" checked> E-mail</label>
-      <label><input type="checkbox" name="kontakt" value="telefon"> Telefon</label>
-      <label><input type="checkbox" name="kontakt" value="osobiscie"> Kontakt osobisty</label>
-      <label><input type="checkbox" name="kontakt" value="platforma"> Platforma szkolna</label>
-      <label><input type="checkbox" name="kontakt" value="brak"> Bez kontaktu, tylko informacja o rozwiązaniu</label>
-    </fieldset>
+    <section class="suwaki" aria-label="Suwaki">
+      <label for="wilgotnosc">jaka jest wilgotność <input id="wilgotnosc" name="wilgotnosc" type="range" min="0" max="100" value="50"></label>
+      <label for="czekaj">Proszę czekać... <input id="czekaj" name="czekaj" type="range" min="0" max="100" value="40"></label>
+    </section>
 
-    <fieldset>
-      <legend>7. Opis usterki</legend>
-      <label for="opis">Opisz, co się dzieje, i podaj okoliczności występowania problemu:</label>
-      <textarea id="opis" name="opis" rows="6" placeholder="Wpisz szczegółowy opis zgłoszenia..."></textarea>
-    </fieldset>
-
-    <div class="actions">
-      <button type="button" onclick="sprawdzFormularz()">SPRAWDŹ FORMULARZ</button>
-      <button type="button" onclick="przykladowyOpis()">WSTAW PRZYKŁADOWY OPIS</button>
-      <input class="send" type="submit" value="WYŚLIJ">
-      <input type="reset" value="CZYŚĆ">
+    <output id="komunikat" aria-live="polite"></output>
+    <div class="przyciski">
+      <button class="niespodzianka" type="button" id="niespodzianka">Przycisk niespodzianka</button>
+      <button class="reset" type="reset">Reset</button>
+      <button class="wyslij" type="submit">Wyślij zapytanie</button>
     </div>
   </form>
-  <footer><p>Projekt formularza: Bruno Łanecki, klasa 2F, grupa 12.</p><p><a href="index.html">Wróć do strony głównej</a></p></footer>
-</main>
+  <script>
+    const form = document.getElementById('formularz');
+    const komunikat = document.getElementById('komunikat');
+    document.getElementById('niespodzianka').addEventListener('click', () => {
+      alert('Niespodzianka! Miłego dnia!');
+    });
+    form.addEventListener('reset', () => { komunikat.textContent = ''; });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const inne = document.getElementById('inne');
+      const ciastko = document.getElementById('inne-ciastko');
+      if (inne.checked && !ciastko.value.trim()) {
+        komunikat.textContent = 'Podaj nazwę innego ciastka.';
+        ciastko.focus();
+        return;
+      }
+      komunikat.textContent = 'Formularz został wypełniony! (Nie wysyła danych do serwera.)';
+    });
+  </script>
 </body>
 </html>
